@@ -99,65 +99,113 @@ export default function Home() {
     <main style={{
       justifyContent: 'center',
       fontFamily: "Verdana, sans-serif",
+      backgroundImage: `url('https://raw.githubusercontent.com/nickamaes/Maes/main/dapp/app/BGpage.jpg')`,
       minHeight: '100vh',
-      backgroundPosition: 'center',}}>
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      
+    }}>
 
       <div style={{minHeight: '30vh' }}> 
         <button onClick={() => {connectWallet();}}
-        className="p-3 bg-slate-800 text-white rounded">
+        className="p-3 bg-slate-800 text-white rounded"
+        style={{ 
+          background: 'linear-gradient(to top, black, gray)',
+          border: 'none'
+        }}>
         {walletKey != "" ? walletKey : " Connect wallet"}
+        
+        </button>
+      </div>
+      <div style={{textAlign: 'center' }}>
+      <p style={{fontSize: '30px'}}><b>Maes Token</b></p>
+     
+      <p>Minting and Staking</p>
+        
+      </div>
+      <div style={{
+          border: '4px dashed rgba(204, 204, 204, 0.5)', 
+          padding: '20px', 
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          maxWidth: '300px', 
+          margin: '0 auto' 
+        }}>
+        <br></br>
+        <form style={{marginBottom: '10px'}}>
+          <label> <b>Input Amount To Mint Mae:</b></label><br></br>
+       
+        </form>
+        <input
+          type="number"
+          value={mintingAmount}
+          onChange={(e) => mintAmountChange(e)}
+          style={{ color: "black", marginBottom: '10px' }}
+        />
+        <button
+          onClick={() => { mintCoin(); }}
+          className="p-3 bg-slate-800 text-white rounded"
+          style={{ 
+            background: 'linear-gradient(to right, black, gray)',
+            border: 'none'
+          }}
+        >
+          {"Mint Token"}
         </button>
       </div>
 
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-      <br></br>
-      <form>
-        <label> Input Amount To Mint</label><br></br>
-        </form>
-      <input
-        type="number"
-        value = {mintingAmount}
-        onChange = {(e) => mintAmountChange(e)}
-        style={{color:"Black"}}
-      />
-      <button 
-        onClick={() => {mintCoin();}}
-        className="p-3 bg-slate-800 text-white rounded"
-      >
-        {"Mint Token"}
-      </button> 
-      
-    </div>
     <br></br>
 
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '10vh' }}>
-    <form>
-        <label> Input Amount To Stake</label><br></br>
+    <div style={{ 
+          border: '4px dashed rgba(204, 204, 204, 0.5)', 
+          padding: '20px', 
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          maxWidth: '300px', 
+          margin: '0 auto' 
+          }}>
+    <form style={{marginBottom: '10px'}}>
+        <label> <b>Input Amount To Stake</b></label><br></br>
         </form>
       <input
         type="number"
         value = {stakingAmount}
         onChange = {(e) => stakeAmountChange(e)}
-        style={{color:"Black"}}
+        style={{color:"Black",marginBottom: '10px' }}
       />
     
       <button 
         onClick={stakeCoin}
         className="p-3 bg-slate-800 text-white rounded"
+        style={{ 
+          background: 'linear-gradient(to left, black, gray)',
+          border: 'none'
+        }}
       >
-        {"Stake It"}
+        {"Stake Maes"}
       </button> 
     </div>
 
-  <div>
+
+
+  <div style = {{textAlign: 'center', margin: '0 auto'}}>
     <br></br>
     <br></br>
     <button 
         onClick={withdrawCoin}
         className="p-3 bg-slate-800 text-white rounded"
+        style={{ 
+          background: 'linear-gradient(to top, black, gray)',
+          border: 'none'
+        }}
       >
         {"Withdraw"}
       </button> 
+
       </div>
 
     </main>
