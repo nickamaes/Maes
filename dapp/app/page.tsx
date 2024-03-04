@@ -9,7 +9,11 @@ import { url } from "inspector";
 export default function Home() {
   const [walletKey, setwalletKey] = useState("");
   const [currentData, setcurrentData] = useState("");
-
+  const [mintingAmount, setMintingAmount] = useState<number>();
+  const [submitted, setSubmitted] = useState(false);
+  const [transactionHash, setTransactionHash] = useState("");
+  const [stakingAmount, setStakingAmount] = useState<number>();
+  
   const connectWallet = async () => {
     const { ethereum } = window as any;
     const accounts = await ethereum.request({
@@ -17,11 +21,7 @@ export default function Home() {
     });
     setwalletKey(accounts[0]);
   };
-  //<Minting>
-  const [mintingAmount, setMintingAmount] = useState<number>();
-  const [submitted, setSubmitted] = useState(false);
-  const [transactionHash, setTransactionHash] = useState("");
-  
+ 
   const mintCoin = async () => {
     const { ethereum } = window as any;
     const provider = new BrowserProvider(ethereum);
@@ -46,10 +46,8 @@ export default function Home() {
       setMintingAmount(0);
     }
   };
-  //</Minting>
+ 
 
-  //<Staking>
-  const [stakingAmount, setStakingAmount] = useState<number>();
   const stakeCoin = async () => {
     const { ethereum } = window as any;
     const provider = new BrowserProvider(ethereum);
@@ -65,6 +63,7 @@ export default function Home() {
       alert(`Minting failed: ${decodedError?.args}`);
     }
   };
+
   const stakeAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     if (!isNaN(Number(inputValue))) {
@@ -74,9 +73,7 @@ export default function Home() {
       setStakingAmount(0);
     }
   };
-  //</Staking>
- 
-  //<Withdraw>
+
   const withdrawCoin = async () => {
     const { ethereum } = window as any;
     const provider = new BrowserProvider(ethereum);
@@ -92,7 +89,7 @@ export default function Home() {
       alert(`Minting failed: ${decodedError?.args}`);
     }
   };
-  //</Withdraw>
+ 
 
 
   return (
